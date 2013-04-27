@@ -13,6 +13,8 @@ public class ChargePlayerAI : AI {
 	// Update is called once per frame
 	void Update () {
 		// Find vector towards player
+		target = GameObject.Find("Player");
+		
 		if( target != null )
 		{
 			Vector3 position = gameObject.transform.position;

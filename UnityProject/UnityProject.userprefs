@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\ChasePlayerAI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\KeyboardMovement.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\OnCollisionWithEnemy.cs" Line="7" Column="3" />
-      <File FileName="Assets\Scripts\Enemy\EnemySpawner.cs" Line="60" Column="3" />
+      <File FileName="Assets\Scripts\Player\OnCollisionWithEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy\EnemySpawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Control\LevelControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\EnemyMovementCharge.cs" Line="55" Column="2" />
-      <File FileName="Assets\Scripts\Enemy\EnemyMovementChase.cs" Line="68" Column="4" />
-      <File FileName="Assets\Scripts\Enemy\ChasePlayerAI.cs" Line="24" Column="19" />
+      <File FileName="Assets\Scripts\Enemy\Wall\Expander.cs" Line="65" Column="45" />
+      <File FileName="Assets\Scripts\Enemy\Chase\ChasePlayerAI.cs" Line="17" Column="3" />
+      <File FileName="Assets\Scripts\Enemy\Charge\ChargePlayerAI.cs" Line="17" Column="3" />
+      <File FileName="Assets\Scripts\Player\KeyboardMovement.cs" Line="38" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

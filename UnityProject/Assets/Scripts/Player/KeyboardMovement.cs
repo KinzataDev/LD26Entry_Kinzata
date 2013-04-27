@@ -3,6 +3,7 @@ using System.Collections;
 
 public class KeyboardMovement : MonoBehaviour {
 	
+	public GameObject CubeForm;
 	
 	public float force;
 	// Use this for initialization

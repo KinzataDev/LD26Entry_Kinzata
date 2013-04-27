@@ -5,6 +5,9 @@ public class EnemyMovementCharge : MonoBehaviour {
 	
 	public float force;
 	
+	public AudioClip groundHitSound;
+	public AudioClip warningSound;
+	
 	public float timeBetweenMoves = 5f;
 	public float timeApplyForce = 5f;
 	public float timeApplyAudio = 5f;
@@ -21,7 +24,6 @@ public class EnemyMovementCharge : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
@@ -57,7 +59,7 @@ public class EnemyMovementCharge : MonoBehaviour {
 
 		if( obj.impactForceSum.y > forceNeeded )
 		{
-			gameObject.audio.PlayOneShot(audio.clip);
+			gameObject.audio.PlayOneShot(groundHitSound);
 		}	
 
 	}
@@ -67,7 +69,7 @@ public class EnemyMovementCharge : MonoBehaviour {
 
 		if( obj.impactForceSum.y > forceNeeded )
 		{
-			gameObject.audio.PlayOneShot(audio.clip);
+			gameObject.audio.PlayOneShot(groundHitSound);
 		}	
 
 	}
@@ -76,6 +78,7 @@ public class EnemyMovementCharge : MonoBehaviour {
 	{
 		if( canMove )
 		{
+			gameObject.audio.PlayOneShot(warningSound);
 			newForce += direction;
 			canMove = false;
 			

@@ -14,6 +14,7 @@ public class ChasePlayerAI : AI {
 	
 	// Update is called once per frame
 	void Update () {
+		target = GameObject.Find("Player");
 		// Find vector towards player
 		if( target != null )
 		{
@@ -30,31 +31,41 @@ public class ChasePlayerAI : AI {
 			}
 			else
 			{
-				int val = Random.Range(1,5);
-				switch(val)
-				{
-				case 1:
-					gameObject.SendMessage("MoveTowardPlayer", 6);
-					break;
-				case 2:
-					gameObject.SendMessage("MoveTowardPlayer", 4);
-					break;
-				case 3:
-					gameObject.SendMessage("MoveTowardPlayer", 8);
-					break;
-				case 4:
-					gameObject.SendMessage("MoveTowardPlayer", 2);
-					break;
-				}
+				MoveRandom();
 			}
-			
-			
-			
+		}
+		else
+		{
+			MoveRandom();
+		}
+	}
+	
+	private void MoveRandom()
+	{
+		gameObject.GetComponent<EnemyMovementChase>().timeBetweenMoves = 3;
+				
+		int val = Random.Range(1,5);
+		switch(val)
+		{
+		case 1:
+			gameObject.SendMessage("MoveTowardPlayer", 6);
+			break;
+		case 2:
+			gameObject.SendMessage("MoveTowardPlayer", 4);
+			break;
+		case 3:
+			gameObject.SendMessage("MoveTowardPlayer", 8);
+			break;
+		case 4:
+			gameObject.SendMessage("MoveTowardPlayer", 2);
+			break;
 		}
 	}
 	
 	private void FollowPlayer(Vector3 toVector)
 	{
+		gameObject.GetComponent<EnemyMovementChase>().timeBetweenMoves = 1.5f;
+		
 		float x = toVector[0];
 		float z = toVector[2];
 		
