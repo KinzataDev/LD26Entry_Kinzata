@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\Unity\Centipede\Assets\Scripts\LevelControl\PauseTime.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy\EnemyMovement.cs">
     <Files>
-      <File FileName="..\..\..\Unity\Centipede\Assets\Scripts\LevelControl\PauseTime.cs" Line="29" Column="4" />
+      <File FileName="Assets\Scripts\Player\KeyboardMovement.cs" Line="37" Column="27" />
+      <File FileName="Assets\Scripts\Enemy\EnemyMovement.cs" Line="76" Column="4" />
+      <File FileName="..\..\..\Unity\Centipede\Assets\Scripts\LevelControl\GameLevelControl.cs" Line="171" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -7,17 +7,22 @@ public class EnemyMovement : MonoBehaviour {
 	
 	public float timeBetweenMoves = 5f;
 	public float timeApplyForce = 5f;
+	public float timeApplyAudio = 5f;
 	
 	private float moveTimer = 0;
 	private float forceTimer = 0;
+	private float audioTimer = 0;
 	
 	private Vector3 newForce = Vector3.zero;
 	private Vector3 currentForce;
 	
 	private bool canMove = true;
+	private bool shouldPlayAudio = true;
 	
 	public bool isChasingPlayer = false;
+	public bool isPlayerControlled = false;
 	
+	public float forceNeeded;
 	
 	// Use this for initialization
 	void Start () {
@@ -32,24 +37,27 @@ public class EnemyMovement : MonoBehaviour {
 		
 		if( canMove )
 		{
-			if( Input.GetKey(KeyCode.W) )
+			if( isPlayerControlled )
 			{
-				moveUp();
-			}
-			
-			if( Input.GetKey(KeyCode.A) )
-			{
-				moveLeft();
-			}
-			
-			if( Input.GetKey(KeyCode.S) )
-			{
-				moveDown();
-			}
-			
-			if( Input.GetKey(KeyCode.D) )
-			{
-				moveRight();
+				if( Input.GetKey(KeyCode.W) )
+				{
+					moveUp();
+				}
+				
+				if( Input.GetKey(KeyCode.A) )
+				{
+					moveLeft();
+				}
+				
+				if( Input.GetKey(KeyCode.S) )
+				{
+					moveDown();
+				}
+				
+				if( Input.GetKey(KeyCode.D) )
+				{
+					moveRight();
+				}	
 			}
 			
 			currentForce = newForce;
@@ -58,11 +66,13 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		else if( forceTimer < timeApplyForce )
 		{
+			audioTimer += Time.deltaTime;
 			forceTimer += Time.deltaTime;
 			gameObject.rigidbody.AddForce(currentForce.normalized*force);
 		}
 		else
 		{
+			audioTimer += Time.deltaTime;
 			moveTimer += Time.deltaTime;
 			
 			if( moveTimer >= timeBetweenMoves )
@@ -71,10 +81,61 @@ public class EnemyMovement : MonoBehaviour {
 				canMove = true;
 				moveTimer = 0;
 				forceTimer = 0;
-				
+				audioTimer = 0;
+				shouldPlayAudio = true;
 			}
 		}
 	}
+	
+	void OnCollisionStay( Collision obj )
+	{
+		if( shouldPlayAudio )
+		{
+			if( obj.impactForceSum.y > forceNeeded )
+			{
+				gameObject.audio.PlayOneShot(audio.clip);
+				shouldPlayAudio = false;
+			}	
+		}
+	}
+	
+	void MoveTowardPlayer(int direction)
+	{
+		if( canMove )
+		{
+			switch(direction)
+			{
+			case 6:
+			{
+				moveRight();
+				break;
+			}
+			case 4:
+			{
+				moveLeft();
+				break;
+			}
+			case 8:
+			{
+				moveUp();
+				break;
+			}
+			case 2:
+			{
+				moveDown();
+				break;
+			}
+			}
+			
+			currentForce = newForce;
+			
+			gameObject.rigidbody.AddForce(newForce.normalized*force);
+		}
+	}
+	
+	
+	
+	
 	
 	public void moveUp()
 	{
@@ -103,4 +164,6 @@ public class EnemyMovement : MonoBehaviour {
 		newForce += new Vector3(force,0,0);
 		canMove = false;
 	}
+	
+	
 }
