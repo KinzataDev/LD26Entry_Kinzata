@@ -8,6 +8,9 @@ public class EnemyMovementCharge : MonoBehaviour {
 	public AudioClip groundHitSound;
 	public AudioClip warningSound;
 	
+	public float minWaitForMove = 1f;
+	public float maxWaitForMove = 5f;
+	
 	public float timeBetweenMoves = 5f;
 	public float timeApplyForce = 5f;
 	public float timeApplyAudio = 5f;

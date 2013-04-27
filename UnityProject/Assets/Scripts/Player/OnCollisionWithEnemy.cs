@@ -7,6 +7,8 @@ public class OnCollisionWithEnemy : MonoBehaviour {
 	{
 		if( hit.gameObject.tag == "Enemy")
 		{
+			ScoreControl.StopTimer();
+			
 			foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
 			{
 				enemy.GetComponent<AI>().enabled = false;
@@ -14,8 +16,10 @@ public class OnCollisionWithEnemy : MonoBehaviour {
 			
 			GameObject.Find("GameControl").SendMessage("EndGameByDeath");
 			
-			Destroy (gameObject);
+			ScoreControl.EnterScore();
+			
 			GameObject.Find("Ground").AddComponent<AudioListener>();
+			Destroy (gameObject);
 		}
 	}
 	

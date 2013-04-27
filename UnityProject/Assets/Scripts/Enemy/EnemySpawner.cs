@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour {
 	public float height = 1;
 	
 	public float timeBetweenSpawns = 5;
+	public float minDistanceToSpawn = 5;
 	
 	private float timeForSpawn = 0;
 	
@@ -40,14 +41,31 @@ public class EnemySpawner : MonoBehaviour {
 			float x = (Random.value * width) - (width * 0.5f);
 			float z = (Random.value * height) - (height * 0.5f);
 			Vector3 point = new Vector3(x,0,z);
-			
-			if(!Physics.CheckSphere(point, 0.5f) )//hits.Length == 0 )
+			GameObject target = GameObject.FindGameObjectWithTag("Player");
+		
+			if( target != null )
 			{
-				GameObject obj = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
+				Vector3 position = gameObject.transform.position;
+				Vector3 targetPosition = target.transform.position;
 				
-				GameObject newObj = Instantiate(obj, point, Quaternion.identity) as GameObject;
-				newObj.name = obj.name;
-				attempts = maxSpawnAttempts;
+				Vector3 toVector = targetPosition - position;
+				
+				toVector.y = 0;
+				toVector = toVector.normalized;
+				
+				RaycastHit hitInfo;
+				bool rayHit = Physics.Raycast(new Ray(position, toVector), out hitInfo, minDistanceToSpawn);
+				if( !rayHit || hitInfo.collider.gameObject.tag != "Player")
+				{
+					if(!Physics.CheckSphere(point, 0.5f) )//hits.Length == 0 )
+					{
+						GameObject obj = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
+						
+						GameObject newObj = Instantiate(obj, point, Quaternion.identity) as GameObject;
+						newObj.name = obj.name;
+						attempts = maxSpawnAttempts;
+					}
+				}
 			}
 		}
 	}

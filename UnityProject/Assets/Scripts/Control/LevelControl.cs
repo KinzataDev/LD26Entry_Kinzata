@@ -18,6 +18,7 @@ public class LevelControl : MonoBehaviour {
 		GameObject.Find("GameOverPopup").GetComponent<GUIText>().enabled = true;
 		yield return new WaitForSeconds(3);
 		
+		ScoreControl.ResetTime();
 		Application.LoadLevel("MenuScene");
 	}
 }

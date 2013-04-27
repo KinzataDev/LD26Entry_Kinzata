@@ -1,14 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\KeyboardMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Control\ScoreControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\OnCollisionWithEnemy.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\EnemySpawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Control\LevelControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Enemy\Wall\Expander.cs" Line="65" Column="45" />
-      <File FileName="Assets\Scripts\Enemy\Chase\ChasePlayerAI.cs" Line="17" Column="3" />
-      <File FileName="Assets\Scripts\Enemy\Charge\ChargePlayerAI.cs" Line="17" Column="3" />
-      <File FileName="Assets\Scripts\Player\KeyboardMovement.cs" Line="38" Column="60" />
+      <File FileName="Assets\Scripts\Control\ScoreControl.cs" Line="25" Column="3" />
+      <File FileName="Assets\Scripts\Player\OnCollisionWithEnemy.cs" Line="10" Column="29" />
+      <File FileName="Assets\Scripts\Player\SwapForm.cs" Line="34" Column="31" />
+      <File FileName="..\..\..\Unity\Centipede\Assets\Scripts\Score\HighScore\HighScoreControl.cs" Line="10" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
