@@ -3,25 +3,13 @@ using System.Collections;
 
 public class OnCollisionWithEnemy : MonoBehaviour {
 	
-	public GameObject Enemy;
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
 	void OnCollisionEnter(Collision hit)
 	{
-		if( hit.gameObject.name == "Enemy")
+		if( hit.gameObject.tag == "Enemy")
 		{
 			foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
 			{
-				enemy.GetComponent<ChasePlayerAI>().enabled = false;
+				enemy.GetComponent<AI>().enabled = false;
 			}
 			
 			GameObject.Find("GameControl").SendMessage("EndGameByDeath");

@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 	{
 		GUI.skin = menuSkin;
 		
-		float ScreenX = ((Screen.width * 0.5f) - (areaWidth * 0.5f)) ;//- (areaWidth * 0.5f));
+		float ScreenX = ((Screen.width * 0.5f) - (areaWidth * 0.5f));
 		float ScreenY = ((Screen.height * 0.5f) - (areaHeight * 0.5f));
 		
 		GUILayout.BeginArea( new Rect(ScreenX,ScreenY, areaWidth, areaHeight));

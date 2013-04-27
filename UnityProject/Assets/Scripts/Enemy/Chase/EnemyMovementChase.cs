@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyMovement : MonoBehaviour {
+public class EnemyMovementChase : MonoBehaviour {
 	
 	public float force;
 	
@@ -66,13 +66,11 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		else if( forceTimer < timeApplyForce )
 		{
-			audioTimer += Time.deltaTime;
 			forceTimer += Time.deltaTime;
 			gameObject.rigidbody.AddForce(currentForce.normalized*force);
 		}
 		else
 		{
-			audioTimer += Time.deltaTime;
 			moveTimer += Time.deltaTime;
 			
 			if( moveTimer >= timeBetweenMoves )
@@ -81,13 +79,22 @@ public class EnemyMovement : MonoBehaviour {
 				canMove = true;
 				moveTimer = 0;
 				forceTimer = 0;
+			}
+		}
+		
+		if(!shouldPlayAudio)
+		{
+			audioTimer += Time.deltaTime;
+			if( audioTimer >= timeApplyAudio)
+			{
 				audioTimer = 0;
 				shouldPlayAudio = true;
 			}
 		}
+		
 	}
 	
-	void OnCollisionStay( Collision obj )
+	void OnCollisionEnter( Collision obj )
 	{
 		if( shouldPlayAudio )
 		{
@@ -95,8 +102,23 @@ public class EnemyMovement : MonoBehaviour {
 			{
 				gameObject.audio.PlayOneShot(audio.clip);
 				shouldPlayAudio = false;
-			}	
+			}		
 		}
+
+	}
+	
+	void OnCollisionStay( Collision obj )
+	{
+
+		if( shouldPlayAudio )
+		{
+			if( obj.impactForceSum.y > forceNeeded )
+			{
+				gameObject.audio.PlayOneShot(audio.clip);
+				shouldPlayAudio = false;
+			}		
+		}	
+
 	}
 	
 	void MoveTowardPlayer(int direction)
