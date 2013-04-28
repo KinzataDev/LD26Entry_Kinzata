@@ -36,14 +36,22 @@ public class EnemySpawner : MonoBehaviour {
 	{
 		if( inObject != null )
 		{
-			float x = (Random.value * width) - (width * 0.5f);
-			float z = (Random.value * height) - (height * 0.5f);
-			Vector3 point = new Vector3(x,0,z);
+			bool isSpawned = false;
+			while( !isSpawned )
+			{
+				float x = (Random.value * width) - (width * 0.5f);
+				float z = (Random.value * height) - (height * 0.5f);
+				Vector3 point = new Vector3(x,0,z);
+				
+				if(Physics.CheckSphere(point, 0.6f))
+				{
+					GameObject newObj = Instantiate(inObject, point, Quaternion.AngleAxis(-90, new Vector3(1,0,0))) as GameObject;
+					newObj.name = inObject.name;
+					isSpawned = true;
 			
-			GameObject newObj = Instantiate(inObject, point, Quaternion.AngleAxis(-90, new Vector3(1,0,0))) as GameObject;
-			newObj.name = inObject.name;
-			
-			return;
+					return;
+				}
+			}
 		}
 		
 		int attempts = 0;
