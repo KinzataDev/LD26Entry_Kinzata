@@ -87,6 +87,9 @@ public class Expander : AI {
 			numAttempts++;
 		}
 		
-		
+		if( numAttempts >= maxAttempts )
+		{
+			shouldChangeDirection = true;
+		}
 	}
 }
