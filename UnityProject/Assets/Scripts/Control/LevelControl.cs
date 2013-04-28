@@ -19,6 +19,7 @@ public class LevelControl : MonoBehaviour {
 		yield return new WaitForSeconds(3);
 		
 		ScoreControl.ResetTime();
+		PowerLimit.Reset();
 		Application.LoadLevel("MenuScene");
 	}
 }
