@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour {
 	
 	public GameObject[] objectsToSpawn;
+	public GameObject particleSystem;
 	
 	public float width = 1;
 	public float height = 1;
@@ -93,6 +94,7 @@ public class EnemySpawner : MonoBehaviour {
 						!Physics.Linecast(topRight, bottomRight) && !Physics.Linecast(bottomRight, bottomLeft))
 					{
 						// Move it back
+						Instantiate(particleSystem, position, Quaternion.AngleAxis(-90, new Vector3(1,0,0)));
 						newObj.transform.position = position;
 						attempts = maxSpawnAttempts;
 					}

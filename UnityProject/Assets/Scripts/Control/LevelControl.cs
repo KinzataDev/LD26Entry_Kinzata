@@ -15,7 +15,7 @@ public class LevelControl : MonoBehaviour {
 		GameObject scoreTimer = GameObject.Find("ScoreText");
 		
 		popupPosition = scoreTimer.transform.position;
-		popupPosition.x += 0.03f;
+		popupPosition.x += 0.05f;
 		popupPosition.y -= 0.04f;
 		GameObject newText = Instantiate(popupText, popupPosition, Quaternion.identity) as GameObject;
 		newText.guiText.text = "Something's coming...";
@@ -23,10 +23,12 @@ public class LevelControl : MonoBehaviour {
 	
 	public void GoalFound()
 	{
-		GameObject.FindWithTag("Player").GetComponent<OnCollisionWithEnemy>().enabled = false;
+		GameObject.FindWithTag("Player").GetComponent<OnCollisionWithEnemy>().canDie = false;
 		GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enabled = false;
+		audio.PlayOneShot(audio.clip);
 		StartCoroutine(ClearEnemies());
 		StartCoroutine (BeginNextLevel());
+		
 	}
 	
 	public void SpawnGoal()
@@ -49,21 +51,31 @@ public class LevelControl : MonoBehaviour {
 			newText.guiText.text = "It's back...";
 			break;
 		case 3:
-			newText.guiText.text = "Maybe if I keep trying?";
+			newText.guiText.text = "It has to be...";
 			break;
 		default:
-			newText.guiText.text = "There it is again";
+			newText.guiText.text = "There it is.";
 			break;
 		}
 	}
 	
 	private IEnumerator BeginNextLevel()
 	{
-		yield return new WaitForSeconds(3);
+		while( GameObject.FindGameObjectsWithTag("Enemy").Length > 0 )
+		{
+			yield return new WaitForSeconds(0.5f);
+		}
+		
 		currentLevel++;
 		ScoreControl.ResetTime();
-		GameObject.FindWithTag("Player").GetComponent<OnCollisionWithEnemy>().enabled = true;
-		GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>().enabled = true;
+		GameObject.FindWithTag("Player").GetComponent<OnCollisionWithEnemy>().canDie = true;
+		EnemySpawner spawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+		spawner.enabled = true;
+		spawner.timeBetweenSpawns -= 0.2f;
+		if( spawner.timeBetweenSpawns < 1.6f )
+		{
+			spawner.timeBetweenSpawns = 1.6f;
+		}
 		
 		GameObject newText = Instantiate(popupText, popupPosition, Quaternion.identity) as GameObject;
 		
@@ -74,10 +86,13 @@ public class LevelControl : MonoBehaviour {
 			newText.guiText.text = "Whoa...";
 			break;
 		case 3:
-			newText.guiText.text = "Am I getting anywhere?";
+			newText.guiText.text = "Is this the right way?";
+			break;
+		case 4:
+			newText.guiText.text = "There's only one way to find out...";
 			break;
 		default:
-			newText.guiText.text = "I can do it. ( Level " + currentLevel + " )";
+			newText.guiText.text = "Keep going - ( Level " + currentLevel + " )";
 			break;
 		}
 	}
@@ -89,17 +104,13 @@ public class LevelControl : MonoBehaviour {
 	
 	private IEnumerator ClearEnemies()
 	{
-		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
+		while( GameObject.FindGameObjectsWithTag("Enemy").Length > 0)
 		{
-			yield return new WaitForSeconds(0.005f);
-			Destroy (obj);
-		}
-		
-		// In case anything spawns during the above loop
-		foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
-		{
-			yield return new WaitForSeconds(0.01f);
-			Destroy (obj);
+			foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
+			{
+				yield return new WaitForSeconds(0.005f);
+				Destroy (obj);
+			}
 		}
 	}
 	
@@ -109,6 +120,7 @@ public class LevelControl : MonoBehaviour {
 		yield return new WaitForSeconds(3);
 		
 		ScoreControl.ResetTime();
+		ScoreControl.ResetTotalTime();
 		Application.LoadLevel("MenuScene");
 	}
 }

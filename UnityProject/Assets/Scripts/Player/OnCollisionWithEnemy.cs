@@ -3,23 +3,28 @@ using System.Collections;
 
 public class OnCollisionWithEnemy : MonoBehaviour {
 	
+	public bool canDie = true;
+	
 	void OnCollisionEnter(Collision hit)
 	{
-		if( hit.gameObject.tag == "Enemy")
+		if( canDie )
 		{
-			ScoreControl.StopTimer();
-			
-			foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+			if( hit.gameObject.tag == "Enemy")
 			{
-				enemy.GetComponent<AI>().enabled = false;
-			}
-			
-			GameObject.Find("GameControl").SendMessage("EndGameByDeath");
-			
-			ScoreControl.EnterScore();
-			
-			GameObject.Find("Ground").AddComponent<AudioListener>();
-			Destroy (gameObject);
+				ScoreControl.StopTimer();
+				
+				foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+				{
+					enemy.GetComponent<AI>().enabled = false;
+				}
+				
+				GameObject.Find("GameControl").SendMessage("EndGameByDeath");
+				
+				ScoreControl.EnterScore();
+				
+				GameObject.Find("Ground").AddComponent<AudioListener>();
+				Destroy (gameObject);
+			}	
 		}
 	}
 	

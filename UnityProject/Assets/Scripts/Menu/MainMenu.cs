@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour {
 	{
 		if( Input.GetKeyDown(KeyCode.Space) )
 		{
-			Application.LoadLevel("MainScene");
+			FadeOut();
 		}
 	}
 	
@@ -44,9 +44,14 @@ public class MainMenu : MonoBehaviour {
 		
 		if( GUILayout.Button("Be careful"))
 		{
-			Application.LoadLevel("MainScene");
+			FadeOut();
 		}
 		
 		GUILayout.EndArea();
+	}
+	
+	private void FadeOut()
+	{
+		GameObject.Find("AlphaMask").GetComponent<FadeOutScene>().FadeOut("MainScene");
 	}
 }

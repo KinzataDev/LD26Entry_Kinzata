@@ -50,6 +50,11 @@ public class ScoreControl : MonoBehaviour {
 		timing = true;
 	}
 	
+	public static void ResetTotalTime()
+	{
+		totalTime = 0;
+	}
+	
 	public static void EnterScore()
 	{
 		if( PlayerPrefs.GetFloat(LongestTimeString) < ScoreControl.totalTime )
