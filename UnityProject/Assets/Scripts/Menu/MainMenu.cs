@@ -23,8 +23,6 @@ public class MainMenu : MonoBehaviour {
 		{
 			Application.LoadLevel("MainScene");
 		}
-		
-		
 	}
 	
 	void OnGUI()
@@ -44,7 +42,7 @@ public class MainMenu : MonoBehaviour {
 		
 		GUILayout.BeginArea( new Rect(ScreenX,ScreenY, areaWidth, areaHeight));
 		
-		if( GUILayout.Button("Survive"))
+		if( GUILayout.Button("Be careful"))
 		{
 			Application.LoadLevel("MainScene");
 		}

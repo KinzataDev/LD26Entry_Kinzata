@@ -5,6 +5,6 @@ public class RetrieveHighScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		guiText.text = "Your longest life was: " + PlayerPrefs.GetFloat(ScoreControl.LongestTimeString).ToString();
+		guiText.text = "Your longest time was: " + PlayerPrefs.GetFloat(ScoreControl.LongestTimeString).ToString();
 	}
 }

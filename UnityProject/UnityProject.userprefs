@@ -1,14 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Control\RetrieveHighScore.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Control\Goal.cs" Line="4" Column="36" />
-      <File FileName="Assets\Scripts\Control\LevelControl.cs" Line="8" Column="20" />
-      <File FileName="Assets\Scripts\Control\ScoreControl.cs" Line="27" Column="4" />
-      <File FileName="Assets\Scripts\Menu\MainMenu.cs" Line="12" Column="2" />
-      <File FileName="Assets\Scripts\Control\RetrieveHighScore.cs" Line="8" Column="40" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
