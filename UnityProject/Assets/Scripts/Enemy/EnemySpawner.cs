@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour {
 		
 			if( target != null )
 			{
-				Vector3 position = gameObject.transform.position;
+				Vector3 position = point;
 				Vector3 targetPosition = target.transform.position;
 				
 				Vector3 toVector = targetPosition - position;
@@ -53,7 +53,7 @@ public class EnemySpawner : MonoBehaviour {
 				toVector.y = 0;
 				toVector = toVector.normalized;
 				
-				RaycastHit hitInfo;
+				RaycastHit hitInfo = new RaycastHit();
 				bool rayHit = Physics.Raycast(new Ray(position, toVector), out hitInfo, minDistanceToSpawn);
 				if( !rayHit || hitInfo.collider.gameObject.tag != "Player")
 				{
@@ -75,5 +75,7 @@ public class EnemySpawner : MonoBehaviour {
 		Vector3 position = transform.position;
 		
 		Gizmos.DrawWireCube(position, new Vector3(width,0,height));
+		
+		Gizmos.DrawWireSphere(GameObject.FindGameObjectWithTag("Player").transform.position, minDistanceToSpawn);
 	}
 }

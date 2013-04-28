@@ -27,6 +27,8 @@ public class EnemyMovementCharge : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		ChangeSpawnDelay();
+		canMove = false;
 	}
 	
 	// Update is called once per frame
@@ -50,11 +52,17 @@ public class EnemyMovementCharge : MonoBehaviour {
 			
 			if( moveTimer >= timeBetweenMoves )
 			{
+				ChangeSpawnDelay();
 				canMove = true;
 				moveTimer = 0;
 				forceTimer = 0;
 			}
 		}
+	}
+	
+	private void ChangeSpawnDelay()
+	{
+		timeBetweenMoves = Random.Range(minWaitForMove, maxWaitForMove+1);
 	}
 	
 	void OnCollisionEnter( Collision obj )
