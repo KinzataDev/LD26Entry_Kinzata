@@ -21,14 +21,15 @@ public class EnemyMovementCharge : MonoBehaviour {
 	private Vector3 newForce = Vector3.zero;
 	private Vector3 currentForce;
 	
-	private bool canMove = true;
+	private bool canMove = false;
 	
 	public float forceNeeded;
 	
 	// Use this for initialization
 	void Start () {
-		ChangeSpawnDelay();
 		canMove = false;
+		forceTimer = timeApplyForce;
+		ChangeSpawnDelay();
 	}
 	
 	// Update is called once per frame

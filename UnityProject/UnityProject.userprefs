@@ -1,11 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Control\ScoreControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Control\LevelControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\Control\ScoreControl.cs" Line="25" Column="3" />
-      <File FileName="Assets\Scripts\Player\OnCollisionWithEnemy.cs" Line="10" Column="29" />
-      <File FileName="Assets\Scripts\Player\SwapForm.cs" Line="34" Column="31" />
-      <File FileName="..\..\..\Unity\Centipede\Assets\Scripts\Score\HighScore\HighScoreControl.cs" Line="10" Column="22" />
+      <File FileName="Assets\Scripts\Control\ScoreControl.cs" Line="37" Column="21" />
+      <File FileName="Assets\Scripts\Player\OnCollisionWithEnemy.cs" Line="19" Column="30" />
+      <File FileName="Assets\Scripts\Player\SwapForm.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Control\RetrieveHighScore.cs" Line="9" Column="3" />
+      <File FileName="Assets\Scripts\Enemy\EnemySpawner.cs" Line="40" Column="4" />
+      <File FileName="Assets\Scripts\Control\LevelControl.cs" Line="22" Column="22" />
+      <File FileName="Assets\Scripts\Enemy\Charge\ChargePlayerAI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enemy\Charge\EnemyMovementCharge.cs" Line="31" Column="19" />
+      <File FileName="Assets\Scripts\Player\PowerLimit.cs" Line="10" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

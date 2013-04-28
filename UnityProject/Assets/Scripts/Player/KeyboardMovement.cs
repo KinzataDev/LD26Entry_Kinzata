@@ -15,22 +15,22 @@ public class KeyboardMovement : MonoBehaviour {
 	void Update () {
 		Vector3 newForce = Vector3.zero;
 		
-		if( Input.GetKey(KeyCode.W) )
+		if( Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 		{
 			newForce += new Vector3(0,0,force);
 		}
 		
-		if( Input.GetKey(KeyCode.A) )
+		if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 		{
 			newForce += new Vector3(-force,0,0);
 		}
 		
-		if( Input.GetKey(KeyCode.S) )
+		if( Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
 		{
 			newForce += new Vector3(0,0,-force);
 		}
 		
-		if( Input.GetKey(KeyCode.D) )
+		if( Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 		{
 			newForce += new Vector3(force,0,0);
 		}

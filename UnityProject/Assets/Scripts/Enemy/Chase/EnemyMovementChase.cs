@@ -39,22 +39,22 @@ public class EnemyMovementChase : MonoBehaviour {
 		{
 			if( isPlayerControlled )
 			{
-				if( Input.GetKey(KeyCode.W) )
+				if( Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
 				{
 					moveUp();
 				}
 				
-				if( Input.GetKey(KeyCode.A) )
+				if( Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
 				{
 					moveLeft();
 				}
 				
-				if( Input.GetKey(KeyCode.S) )
+				if( Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
 				{
 					moveDown();
 				}
 				
-				if( Input.GetKey(KeyCode.D) )
+				if( Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
 				{
 					moveRight();
 				}	

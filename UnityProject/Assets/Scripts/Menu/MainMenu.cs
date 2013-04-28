@@ -7,6 +7,14 @@ public class MainMenu : MonoBehaviour {
 	public float areaWidth;
 	public float areaHeight;
 	
+	void Update()
+	{
+		if( Input.GetKeyDown(KeyCode.Space) )
+		{
+			Application.LoadLevel("MainScene");
+		}
+	}
+	
 	void OnGUI()
 	{
 		GUI.skin = menuSkin;
