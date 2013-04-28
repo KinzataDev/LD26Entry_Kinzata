@@ -7,16 +7,36 @@ public class MainMenu : MonoBehaviour {
 	public float areaWidth;
 	public float areaHeight;
 	
+	public float fadeInTime = 4;
+	private float currentFadeInTime = 0;
+	
+	void Start()
+	{
+		Color col = GUI.color;
+		col.a = 0;
+		GUI.color = col;
+	}
+	
 	void Update()
 	{
 		if( Input.GetKeyDown(KeyCode.Space) )
 		{
 			Application.LoadLevel("MainScene");
 		}
+		
+		
 	}
 	
 	void OnGUI()
 	{
+		if( currentFadeInTime <= fadeInTime )
+		{
+			currentFadeInTime += Time.deltaTime;
+			Color col = GUI.color;
+			col.a = currentFadeInTime / fadeInTime;
+			GUI.color = col;
+		}
+		
 		GUI.skin = menuSkin;
 		
 		float ScreenX = ((Screen.width * 0.5f) - (areaWidth * 0.5f));
