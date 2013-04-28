@@ -27,12 +27,24 @@ public class EnemySpawner : MonoBehaviour {
 		if( timeForSpawn >= timeBetweenSpawns )
 		{
 			timeForSpawn = 0;
-			Spawn();
+			Spawn(null);
 		}
 	}
 	
-	void Spawn()
+	public void Spawn(GameObject inObject)
 	{
+		if( inObject != null )
+		{
+			float x = (Random.value * width) - (width * 0.5f);
+			float z = (Random.value * height) - (height * 0.5f);
+			Vector3 point = new Vector3(x,0,z);
+			
+			GameObject newObj = Instantiate(inObject, point, Quaternion.AngleAxis(-90, new Vector3(1,0,0))) as GameObject;
+			newObj.name = inObject.name;
+			
+			return;
+		}
+		
 		int attempts = 0;
 		while( attempts < maxSpawnAttempts)
 		{
@@ -42,7 +54,7 @@ public class EnemySpawner : MonoBehaviour {
 			float z = (Random.value * height) - (height * 0.5f);
 			Vector3 point = new Vector3(x,0,z);
 			GameObject target = GameObject.FindGameObjectWithTag("Player");
-		
+			
 			if( target != null )
 			{
 				Vector3 position = point;

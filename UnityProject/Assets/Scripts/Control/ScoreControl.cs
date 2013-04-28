@@ -3,10 +3,12 @@ using System.Collections;
 
 public class ScoreControl : MonoBehaviour {
 	
-	private static float time = 0;
+	private static float totalTime = 0;
+	private static float levelTime = 45;
 	
 	private static bool timing = true;
-	private static string HighScoreString = "KinzataHighScore";
+	public static string LongestTimeString = "YouDontBelongHere_Time";
+	public static string HighestLevelString = "YouDontBelongHere_Level";
 	
 	// Use this for initialization
 	void Start () {
@@ -17,11 +19,19 @@ public class ScoreControl : MonoBehaviour {
 	void Update () {
 		if( ScoreControl.timing )
 		{
-			ScoreControl.time += Time.deltaTime;
+			ScoreControl.levelTime -= Time.deltaTime;
+			ScoreControl.totalTime += Time.deltaTime;
 		}
 		
+		if( ScoreControl.levelTime < 0 )
+		{
+			ScoreControl.totalTime += Time.deltaTime;
+			GameObject.Find("GameControl").GetComponent<LevelControl>().SpawnGoal();
+			ScoreControl.levelTime = 0;
+			ScoreControl.timing = false;
+		}
 		
-		guiText.text = ScoreControl.time.ToString("0.000");
+		guiText.text = ScoreControl.levelTime.ToString("0.000");
 	}
 	
 	public static void StopTimer()
@@ -36,14 +46,22 @@ public class ScoreControl : MonoBehaviour {
 	
 	public static void ResetTime()
 	{
-		ScoreControl.time = 0;
+		levelTime = 45;
+		timing = true;
 	}
 	
 	public static void EnterScore()
 	{
-		if( PlayerPrefs.GetFloat(HighScoreString) < ScoreControl.time )
+		if( PlayerPrefs.GetFloat(LongestTimeString) < ScoreControl.totalTime )
 		{
-			PlayerPrefs.SetFloat(HighScoreString, ScoreControl.time);
+			PlayerPrefs.SetFloat(LongestTimeString, ScoreControl.totalTime);
+		}
+		
+		LevelControl obj = GameObject.Find("GameControl").GetComponent<LevelControl>();
+		
+		if( PlayerPrefs.GetInt(HighestLevelString) < obj.currentLevel )
+		{
+			PlayerPrefs.SetInt(HighestLevelString, obj.currentLevel);
 		}
 		
 	}
